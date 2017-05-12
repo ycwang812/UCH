@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>無標題文件</title>
+<script type="text/javascript">
+	var ajax, readtemp;
+	var urlname;
+
+	function readRepeat() {
+		setInterval(function() {
+			readtemp=1;
+			urlname="http://127.0.0.1:42001/?send-vars";
+			ajaxSendRequest();
+		}, 1000);  
+	}
+	
+	//非同步送出資料
+	function ajaxSendRequest() {
+		ajax = createAJAX() ;
+		if (!ajax) {
+			alert ('使用不相容 XMLHttpRequest 的瀏覽器');
+			return 0;
+		}
+		ajax.onreadystatechange = onRcvData;
+		ajax.open ("GET", urlname, true);
+		ajax.send ("");
+	}
+	
+	//依據不同的瀏覽器，取得 XMLHttpRequest 物件
+	function createAJAX() {
+		if (window.ActiveXObject) {
+			try {
+				return new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e2) {
+					return null;
+				}
+			}
+		} else if (window.XMLHttpRequest) {
+			return new XMLHttpRequest();
+		} else {
+			return null;
+		}
+	}
+	
+	//非同步傳輸的回應函式，用來處理伺服器回傳的資料
+	function onRcvData () {
+		if (ajax.readyState == 4) {
+			if (ajax.status == 200) {
+				if(readtemp==1) {
+					var content = document.getElementById ('content');
+					var str=ajax.responseText.split(" ");
+					if(str[4]>str[6]) {
+		　　　				content.innerHTML="攝氏溫度："+str[4]+"，超過上限了！";
+					} else {
+		　　　				content.innerHTML="攝氏溫度："+str[4];
+					}
+				}
+			} else {
+				alert ("伺服器處理錯誤");
+			}
+		} 
+	}
+
+	//傳送溫度上限值
+	function sendTemp() {
+		var highTemp=document.getElementById('highTemp');
+		if(highTemp.value=="") {
+			alert("必須輸入溫度值！");
+		} else {
+			readtemp=2;
+			urlname="http://127.0.0.1:42001/?sensor-update=num="+highTemp.value;
+			ajaxSendRequest();
+			readtemp=2;
+			urlname="http://127.0.0.1:42001/?broadcast=changetemp";
+			ajaxSendRequest();
+		}
+	}
+</script>
+</head>
+
+<body>
+    <h2>傳送上限溫度</h2>
+    <p>輸入上限溫度：
+      <input type="text" name="highTemp" id="highTemp">
+    </p>
+    <input type="button" value="開始監測" onClick="readRepeat()" >
+    <input type="button" value="傳送上限溫度" onClick="sendTemp()" >
+    <br><br>
+    <div id="content"></div>
+</body>
+</html>
