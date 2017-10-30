@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">行車記錄器</string>
+
+    <string name="button1">準備行車錄影</string>
+
+    <string name="button2">使用內建程式錄影</string>
+
+    <string name="button3">播放錄影</string>
+
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">錄音程式</string>
+    <string name="action_settings">Settings</string>
+    <string name="label">錄音程式</string>
+    <string name="start">開始錄音</string>
+    <string name="stop">停止錄音</string>
+
+</resources>
