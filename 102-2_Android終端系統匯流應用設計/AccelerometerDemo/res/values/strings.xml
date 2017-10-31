@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AccelerometerDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="blank"></string>
+    <string name="x">X=</string>
+    <string name="y">Y=</string>
+    <string name="z">Z=</string>
+
+</resources>

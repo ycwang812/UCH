@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SOSDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="phoneno"> 電話號碼：</string>
+    <string name="message">訊息內容：</string>
+    <string name="start">啟動</string>
+    <string name="stop">停止</string>
+    <string name="save">儲存</string>
+    <string name="blank"></string>
+
+</resources>
