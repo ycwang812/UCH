@@ -107,8 +107,8 @@ void loop()
          esp_client.println(data);
     }
     esp_client.stop();
-    Serial.println((String("LM35 TEMP: ") + String(LM35Temp) + String("C, DHT11 TEMP: ") + String(DH11Temp) + String("C, DHT11 HUM: ") + String(DH11Hum) + String("%")));
-    showLCD(String("TEMP: ") + String(DH11Temp) + String("C"), String(" HUM: ") + String(DH11Hum) + String("%"));
+    Serial.println((String("LM35 TEMP: ") + String(LM35Temp) + String("℃, DHT11 TEMP: ") + String(DH11Temp) + String("℃, DHT11 HUM: ") + String(DH11Hum) + String("%")));
+    showLCD(String("TEMP: ") + String(DH11Temp) + String("\x0DF") + String("C"), String(" HUM: ") + String(DH11Hum) + String("%"));
     delay(60000);
 
 }
