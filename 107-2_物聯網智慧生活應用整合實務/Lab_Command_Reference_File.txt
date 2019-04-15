@@ -1,0 +1,35 @@
+AWS Hands-on Workshop - Lab
+
+
+
+===========================================================================================================================================
+
+This file contains the content that you need to complete the lab.
+
+To use this file:
+
+1. Locate the section you need. Each section in this file matches a section in the lab instructions.
+
+2. Do NOT enable the Word Wrap feature in Windows Notepad or the text editor you use to view this file.
+
+============================================================================================================================================
+
+++++ 2.1.7: User Data ++++
+============================================================================================================================================
+
+#!/bin/bash -ex
+yum -y update
+yum -y install httpd php mysql php-mysql
+chkconfig httpd on
+/etc/init.d/httpd start
+if [ ! -f /var/www/html/lab2-app.tar.gz ]; then
+cd /var/www/html
+wget https://d2lrzjb0vjvpn5.cloudfront.net/AWS-100-ESS/v4.0/lab-2-configure-website-datastore/scripts/lab2-app.tar.gz
+tar xvfz lab2-app.tar.gz
+chown apache:root /var/www/html/lab2-app/rds.conf.php
+fi
+
+
+============================================================================================================================================
+
+Copyright 2016 Amazon Web Services, Inc. or its affiliates. All rights reserved.
